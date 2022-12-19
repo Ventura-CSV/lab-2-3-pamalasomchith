@@ -4,10 +4,10 @@ import sys
 import re
 
 
-def test_main_50():
+def test_main_1():
     captureOut = io.StringIO()
     sys.stdout = captureOut
-    datastr = '50'
+    datastr = '10 \n 20 \n 30'
     sys.stdin = io.StringIO(datastr)
 
     main.main()
@@ -16,26 +16,27 @@ def test_main_50():
     lines = captureOut.getvalue().split('\n')
     print(lines)
 
-    res = re.search('730', lines[0])
+    p = re.compile('[\w,\W]*10[\w,\W]*20[\w,\W]*30[\w,\W]*')
+    res = p.match(lines[0])
     assert res != None
     print(res.group())
-    assert res.group() == '730', 'Expected 730'
 
-    res = re.search('277.8', lines[1])
+    p = re.compile('[\w,\W]*60[\w,\W]*')
+    res = p.match(lines[1])
     assert res != None
     print(res.group())
-    assert res.group() == '277.8', 'Expected 277.8'
 
-    res = re.search('1007.8', lines[2])
-    assert res != None, 'The final price error'
+    # p = re.compile('[\w,\W]*20\.00[\w,\W]*')
+    res = re.search('[\w,\W]*20\.00[\w,\W]*', lines[2])
+    # res = p.match(lines[2])
+    assert res != None
     print(res.group())
-    assert res.group() == '1007.8', 'Expected 1007.8'
 
 
-def test_main_70():
+def test_main_2():
     captureOut = io.StringIO()
     sys.stdout = captureOut
-    datastr = '70'
+    datastr = '10 \n 15 \n 25'
     sys.stdin = io.StringIO(datastr)
 
     main.main()
@@ -44,17 +45,17 @@ def test_main_70():
     lines = captureOut.getvalue().split('\n')
     print(lines)
 
-    res = re.search('730', lines[0])
+    p = re.compile('[\w,\W]*10[\w,\W]*15[\w,\W]*25[\w,\W]*')
+    res = p.match(lines[0])
     assert res != None
     print(res.group())
-    assert res.group() == '730', 'Expected 730'
 
-    res = re.search('833.4', lines[1])
+    p = re.compile('[\w,\W]*50[\w,\W]*')
+    res = p.match(lines[1])
     assert res != None
     print(res.group())
-    assert res.group() == '833.4', 'Expected 833.4'
 
-    res = re.search('1563.4', lines[2])
-    assert res != None, 'The final price error'
+    p = re.compile('[\w,\W]*16\.67[\w,\W]*')
+    res = p.match(lines[2])
+    assert res != None
     print(res.group())
-    assert res.group() == '1563.4', 'Expected 1563.4'
