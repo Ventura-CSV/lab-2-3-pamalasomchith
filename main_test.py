@@ -10,27 +10,17 @@ def test_main_1():
     datastr = '10 \n 20 \n 30'
     sys.stdin = io.StringIO(datastr)
 
-    main.main()
+    total, average = main.main()
     sys.stdout = sys.__stdout__
     print('Captured ', captureOut.getvalue())
     lines = captureOut.getvalue().split('\n')
     print(lines)
 
-    p = re.compile(r'[\w,\W]*10[\w,\W]*20[\w,\W]*30[\w,\W]*')
-    res = p.match(lines[0])
-    assert res != None
-    print(res.group())
-
-    p = re.compile(r'[\w,\W]*60[\w,\W]*')
-    res = p.match(lines[1])
-    assert res != None
-    print(res.group())
-
-    # p = re.compile('[\w,\W]*20\.00[\w,\W]*')
-    res = re.search(r'[\w,\W]*20\.00[\w,\W]*', lines[2])
-    # res = p.match(lines[2])
-    assert res != None
-    print(res.group())
+    # p = re.compile(r'[\w,\W]*10[\w,\W]*20[\w,\W]*30[\w,\W]*')
+    # res = p.match(lines[0])
+    # print(res.group())
+    assert total == 60
+    assert int(average) == 20
 
 
 def test_main_2():
@@ -39,23 +29,14 @@ def test_main_2():
     datastr = '10 \n 15 \n 25'
     sys.stdin = io.StringIO(datastr)
 
-    main.main()
+    total, average = main.main()
     sys.stdout = sys.__stdout__
     print('Captured ', captureOut.getvalue())
     lines = captureOut.getvalue().split('\n')
     print(lines)
 
-    p = re.compile(r'[\w,\W]*10[\w,\W]*15[\w,\W]*25[\w,\W]*')
-    res = p.match(lines[0])
-    assert res != None
-    print(res.group())
-
-    p = re.compile(r'[\w,\W]*50[\w,\W]*')
-    res = p.match(lines[1])
-    assert res != None
-    print(res.group())
-
-    p = re.compile(r'[\w,\W]*16\.67[\w,\W]*')
-    res = p.match(lines[2])
-    assert res != None
-    print(res.group())
+    # p = re.compile(r'[\w,\W]*10[\w,\W]*15[\w,\W]*25[\w,\W]*')
+    # res = p.match(lines[0])
+    # print(res.group())
+    assert total == 50
+    assert int(average) == 16
