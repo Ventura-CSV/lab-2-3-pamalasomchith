@@ -13,7 +13,7 @@ def main():
     total = (val1 + val2 + val3)
     average = (int(total)) / 3
     
-    print(total)
+    print(int(total))
     print (f'Average: \t {average:.2f}')
 
     ########################################
