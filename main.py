@@ -11,7 +11,7 @@ def main():
     val2 = int(input("Enter second value "))
     val3 = int(input("Enter third value: "))
     total = (val1 + val2 + val3)
-    average = (int(total)) / 2
+    average = (int(total)) / 3
     
     print(total)
     print (f'Average: \t {average:.2f}')
